@@ -15,7 +15,7 @@ tele = Updater(bot_token, use_context=True)
 chat = tele.bot.get_chat(420074357)
 
 urls = [
-	'https://dq.yam.com/post.php?id=13951'
+	'https://www.bbc.com/news/uk-57951577'
 ]
 
 s = '''
@@ -27,12 +27,12 @@ def testExportAllInText():
 
 def testExport():
 	for url in urls:
-		print(export_to_telegraph.getTitle(url))
-		# print('原文：', url)
-		# r = export_to_telegraph.export(url, True, True, True)
-		# print('导出：', r)
-		# os.system('open ' + _formaturl(r) + ' -g')
-		# print('')
+		# print(export_to_telegraph.getTitle(url))
+		print('原文：', url)
+		r = export_to_telegraph.export(url, True, True, True)
+		print('导出：', r)
+		os.system('open ' + _formaturl(r) + ' -g')
+		print('')
 
 def test():
 	testExport()
