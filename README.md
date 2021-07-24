@@ -20,9 +20,9 @@ Example code:
 
 ```
 from html_telegraph_poster import TelegraphPoster
-p = TelegraphPoster()
-r = p.create_api_token(shortname, longname)
-token = r['access_token']
+poster = TelegraphPoster()
+api_response = poster.create_api_token(shortname, longname)
+token = api_response['access_token']
 ```
 
 ## how to install
