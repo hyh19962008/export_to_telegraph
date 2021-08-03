@@ -115,9 +115,13 @@ def _getArticle(url, toSimplified=False, force_cache=False, noAutoConvert=False)
 
 def isGoodLine(line):
 	start_tags = ['作者 | ', '靠谱的新媒体不多', '图/', '图：', 
-		'最近很多读者反映收不到', '【今日']
+		'最近很多读者反映收不到', '【今日', '图像加注文字']
 	for start_tag in start_tags:
 		if line.startswith(start_tag):
+			return False
+	contain_tags = ['最近更新： 2021年']
+	for contain_tag in contain_tags:
+		if contain_tag in line:
 			return False
 	return True
 
