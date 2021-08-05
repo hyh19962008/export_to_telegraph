@@ -119,7 +119,7 @@ def isGoodLine(line):
 	for start_tag in start_tags:
 		if line.startswith(start_tag):
 			return False
-	contain_tags = ['最近更新： 2021年', '记者2021年', 'BBC世界台记者', '事务记者']
+	contain_tags = ['最近更新： 2021年', '记者2021年', 'BBC世界台记者', '事务记者', '视频加注文字']
 	for contain_tag in contain_tags:
 		if contain_tag in line:
 			return False
