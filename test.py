@@ -15,7 +15,7 @@ tele = Updater(bot_token, use_context=True)
 chat = tele.bot.get_chat(420074357)
 
 urls = [
-	'https://www.bbc.com/news/uk-57951577'
+	'https://www.bbc.com/zhongwen/simp/world-58099713'
 ]
 
 s = '''
@@ -44,4 +44,4 @@ def testAlbum():
 	album_sender.send_v2(chat, album)
 
 if __name__=='__main__':
-	testExport()
+	testAlbum()

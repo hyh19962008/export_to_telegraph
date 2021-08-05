@@ -13,7 +13,7 @@ from opencc import OpenCC
 import cached_url
 import time
 import yaml
-from telegram_util import matchKey, getWid, isCN, AlbumResult, cutCaptionHtml
+from telegram_util import matchKey, getWid, isCN, AlbumResult, cutCaptionHtml, hasSeq
 import weibo_2_album
 import gphoto_2_album
 import hanzidentifier
@@ -123,6 +123,8 @@ def isGoodLine(line):
 	for contain_tag in contain_tags:
 		if contain_tag in line:
 			return False
+	if hasSeq(line, [['BBC', '记者', '前']]):
+		return False
 	return True
 
 def getAlbum(url, force_cache=True, word_limit=200, paragraph_limit=3, append_source=False, append_url = True):
