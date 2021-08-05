@@ -123,7 +123,7 @@ def isGoodLine(line):
 	for contain_tag in contain_tags:
 		if contain_tag in line:
 			return False
-	if hasSeq(line, [['BBC', '记者', '前']]):
+	if hasSeq(line, [['BBC', '记者', '前'], ['BBC中文网', '记者', '最近更新']]):
 		return False
 	return True
 
