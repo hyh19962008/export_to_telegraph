@@ -125,8 +125,10 @@ def isGoodLine(line):
 			return False
 	if hasSeq(line, [['BBC', '记者', '前'], ['BBC中文网', '记者', '最近更新'], ['BBC', '小时前'], ['BBC', '天前']]):
 		return False
-	if line.endswith('分钟前'):
-		return False
+	end_tags = ['分钟前', '小时前']
+	for end_tag in end_tags:
+		if line.endswith(end_tag):
+			return False
 	return True
 
 def getAlbum(url, force_cache=True, word_limit=200, paragraph_limit=3, append_source=False, append_url = True):
