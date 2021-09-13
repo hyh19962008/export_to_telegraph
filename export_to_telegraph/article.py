@@ -131,9 +131,8 @@ def isGoodLine(line):
 			return False
 	return True
 
-def getAlbum(url, force_cache=True, word_limit=200, paragraph_limit=3, append_source=False, append_url = True):
-	content = _getArticle(url, force_cache=force_cache).text
-	album = AlbumResult()
+def getAlbumImg(url):
+	content = BeautifulSoup(cached_url.get(url, force_cache=True), parser='html.parser')
 	for item in content.findAll('img'):
 		path = item.get('src')
 		if not path:
@@ -161,8 +160,16 @@ def getAlbum(url, force_cache=True, word_limit=200, paragraph_limit=3, append_so
 			continue
 		if w * 0.25 < h < w * 4 and min(w, h) > 100 and max(w, h) > 300:
 			# print(file_size, w, h)
-			album.imgs.append(item.get('src'))
-			break
+			return [item.get('src')]
+	og_image = content.find('meta', property='og:image')
+	if og_image:
+		return [og_image['content']]
+	return []
+
+def getAlbum(url, force_cache=True, word_limit=200, paragraph_limit=3, append_source=False, append_url = True):
+	content = _getArticle(url, force_cache=force_cache).text
+	album = AlbumResult()
+	album.imgs = getAlbumImg(url)
 	for tag in ['img', 'br']:
 		for item in content.findAll(tag):
 			item.replace_with('\n\n')

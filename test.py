@@ -15,7 +15,7 @@ tele = Updater(bot_token, use_context=True)
 chat = tele.bot.get_chat(420074357)
 
 urls = [
-	'https://www.bbc.com/zhongwen/simp/world-58099713'
+	'https://cn.reuters.com/article/china-tech-shares-hk-plunge-0913-mon-idCNKBS2G90S5'
 ]
 
 s = '''
