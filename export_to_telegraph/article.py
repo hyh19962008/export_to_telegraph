@@ -131,10 +131,10 @@ def isGoodLine(line):
 			return False
 	return True
 
-def getAlbumImg(url):
-	content = BeautifulSoup(cached_url.get(url, force_cache=True), parser='html.parser')
-	for item in content.findAll('img'):
-		path = item.get('src')
+def getAlbumImg(url, inner_content):
+	content = BeautifulSoup(cached_url.get(url, force_cache=True), 'html.parser')
+	for item in inner_content.findAll('img') + content.findAll('meta', property='og:image'):
+		path = item.get('src') or item.get('content')
 		if not path:
 			continue
 		try:
@@ -158,18 +158,16 @@ def getAlbumImg(url):
 			continue
 		if 57000 < file_size < 61000 and w == 1011 and h == 282: # 短史记题头
 			continue
+		if 's1.reutersmedia.net/resources_v2/images/rcom-default.png' in path:
+			continue
 		if w * 0.25 < h < w * 4 and min(w, h) > 100 and max(w, h) > 300:
-			# print(file_size, w, h)
-			return [item.get('src')]
-	og_image = content.find('meta', property='og:image')
-	if og_image:
-		return [og_image['content']]
+			return [path]
 	return []
 
 def getAlbum(url, force_cache=True, word_limit=200, paragraph_limit=3, append_source=False, append_url = True):
 	content = _getArticle(url, force_cache=force_cache).text
 	album = AlbumResult()
-	album.imgs = getAlbumImg(url)
+	album.imgs = getAlbumImg(url, content)
 	for tag in ['img', 'br']:
 		for item in content.findAll(tag):
 			item.replace_with('\n\n')
