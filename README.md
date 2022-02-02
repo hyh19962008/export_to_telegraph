@@ -28,3 +28,6 @@ token = api_response['access_token']
 ## how to install
 
 `pip3 install export_to_telegraph`
+
+> on Debian/Ubuntu you might want to install these required package first
+`sudo apt-get install libxml2 libxml2-dev libxslt1.1 libxslt1-dev zlib1g zlib1g-dev libjpeg*`
